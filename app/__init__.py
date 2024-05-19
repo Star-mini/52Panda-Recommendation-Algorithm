@@ -1,18 +1,16 @@
 from flask import Flask
 from app.common.config import Config
-from app.common.models import db
+from app.park.Embedding.routes import embedding_bp
+from app.park.Item.routes import item_bp
+from app.park.Cookie.routes import cookie_bp
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    db.init_app(app)
-
-    with app.app_context():
-        # 공통 블루프린트 등록
-        from app.park import bp as park_bp
-        from app.son import bp as son_bp
-        app.register_blueprint(park_bp)
-        app.register_blueprint(son_bp)
+    # Blueprint 등록
+    app.register_blueprint(embedding_bp, url_prefix='/api')
+    app.register_blueprint(item_bp, url_prefix='/api')
+    app.register_blueprint(cookie_bp, url_prefix='/api')
 
     return app
