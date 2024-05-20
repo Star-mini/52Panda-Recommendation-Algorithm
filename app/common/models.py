@@ -1,7 +1,7 @@
-from flask_sqlalchemy import SQLAlchemy
+from app.common.extensions import db
 
-db = SQLAlchemy()
+class Item(db.Model):
+    __tablename__ = 'Item'
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), unique=True, nullable=False)
+    item_id = db.Column(db.Integer, primary_key=True)
+    embedding = db.Column(db.Text, nullable=True)
