@@ -25,7 +25,7 @@ def get_embeddings_by_category(category_id):
             if item.embedding:
                 embeddings.append({
                     'id': item.item_id,
-                    # 'embedding': json.loads(item.embedding)  # 필요 시 JSON으로 파싱
+                    'embedding': item.embedding  # JSON으로 파싱하지 않고 그대로 저장
                 })
         # 임베딩 데이터를 가진 아이템의 수를 로깅
         logging.info(f"Number of items with embeddings: {len(embeddings)}")
