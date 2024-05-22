@@ -18,6 +18,7 @@ def process_embedding(embedding_id):
 
 def get_embeddings_by_category(category_id):
     try:
+        # 해당 카테고리의 모든 아이템을 가져옴
         items = Item.query.filter_by(category_id=category_id).all()
         logging.info(f"Number of items retrieved: {len(items)}")  # 아이템 수 로깅
         embeddings = []
@@ -33,4 +34,3 @@ def get_embeddings_by_category(category_id):
     except Exception as e:
         logging.error(f"Error in get_embeddings_by_category: {e}")
         return []
-
