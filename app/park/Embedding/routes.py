@@ -2,6 +2,8 @@ from flask import Blueprint, request, jsonify
 from .algorithm import process_embedding, get_embeddings_by_category
 import logging
 from app.common.models import Item  # 올바른 경로로 Item을 임포트
+import json
+from scipy.spatial.distance import cosine
 
 
 embedding_bp = Blueprint('embedding', __name__)
@@ -45,8 +47,24 @@ def category_embeddings():
         category_id = item.category_id
         embeddings = get_embeddings_by_category(category_id)
 
-        logging.info(f"Category embeddings result: {embeddings}")
-        return jsonify({'status': 'success', 'data': embeddings})
+        # 현재 아이템의 임베딩을 로드합니다
+        current_embedding = json.loads(item.embedding)
+
+        # 코사인 유사도 계산
+        similarities = []
+        for embedding in embeddings:
+            other_embedding = json.loads(embedding['embedding'])
+            similarity = 1 - cosine(current_embedding, other_embedding)
+            similarities.append({
+                'item_id': embedding['id'],
+                'similarity': similarity
+            })
+
+        # 유사도를 기준으로 내림차순 정렬
+        similarities.sort(key=lambda x: x['similarity'], reverse=True)
+
+        logging.info(f"Similar items: {similarities}")
+        return jsonify({'status': 'success', 'data': similarities})
     except Exception as e:
         logging.error(f"Error in category_embeddings route: {e}")
         return jsonify({'status': 'fail', 'message': str(e)}), 500
