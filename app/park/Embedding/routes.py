@@ -19,10 +19,7 @@ def embedding():
         logging.info(f"Received data: {data}")
         
         # 데이터에서 id 값을 추출
-        embedding_id = data.get('id')
-
-        # 임베딩 알고리즘 로직
-        result = process_embedding(embedding_id)
+        result = data.get('id')
         
         # 결과를 출력
         logging.info(f"Embedding result: {result}")
