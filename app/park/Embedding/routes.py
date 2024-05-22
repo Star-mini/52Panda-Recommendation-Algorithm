@@ -63,8 +63,11 @@ def category_embeddings():
         # 유사도를 기준으로 내림차순 정렬
         similarities.sort(key=lambda x: x['similarity'], reverse=True)
 
-        logging.info(f"Similar items: {similarities}")
-        return jsonify({'status': 'success', 'data': similarities})
+        # 상위 5개만 선택
+        top_similarities = similarities[1:9]
+
+        logging.info(f"Top 5 similar items: {top_similarities}")
+        return jsonify({'status': 'success', 'data': top_similarities})
     except Exception as e:
         logging.error(f"Error in category_embeddings route: {e}")
         return jsonify({'status': 'fail', 'message': str(e)}), 500
