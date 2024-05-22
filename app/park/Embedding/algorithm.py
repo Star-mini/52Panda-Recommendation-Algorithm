@@ -15,3 +15,22 @@ def process_embedding(embedding_id):
     except Exception as e:
         logging.error(f"Error in process_embedding: {e}")
         raise
+
+def get_embeddings_by_category(category_id):
+    try:
+        items = Item.query.filter_by(category_id=category_id).all()
+        logging.info(f"Number of items retrieved: {len(items)}")  # 아이템 수 로깅
+        embeddings = []
+        for item in items:
+            if item.embedding:
+                embeddings.append({
+                    'id': item.item_id,
+                    # 'embedding': json.loads(item.embedding)  # 필요 시 JSON으로 파싱
+                })
+        # 임베딩 데이터를 가진 아이템의 수를 로깅
+        logging.info(f"Number of items with embeddings: {len(embeddings)}")
+        return embeddings
+    except Exception as e:
+        logging.error(f"Error in get_embeddings_by_category: {e}")
+        return []
+
