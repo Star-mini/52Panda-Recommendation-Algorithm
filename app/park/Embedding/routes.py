@@ -39,17 +39,20 @@ def embedding():
         embeddings = get_embeddings_by_category(category_id)
 
         # 현재 아이템의 임베딩을 로드합니다
+        if not item.embedding:
+            return jsonify({'status': 'fail', 'message': 'Embedding not found for the item'}), 404
         current_embedding = json.loads(item.embedding)
 
         # 코사인 유사도 계산
         similarities = []
         for embedding in embeddings:
-            other_embedding = json.loads(embedding['embedding'])
-            similarity = 1 - cosine(current_embedding, other_embedding)
-            similarities.append({
-                'item_id': embedding['id'],
-                'similarity': similarity
-            })
+            if embedding['embedding']:
+                other_embedding = json.loads(embedding['embedding'])
+                similarity = 1 - cosine(current_embedding, other_embedding)
+                similarities.append({
+                    'item_id': embedding['id'],
+                    'similarity': similarity
+                })
 
         # 유사도를 기준으로 내림차순 정렬
         similarities.sort(key=lambda x: x['similarity'], reverse=True)
