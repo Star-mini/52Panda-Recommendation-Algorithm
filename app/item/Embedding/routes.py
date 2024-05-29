@@ -63,7 +63,7 @@ def embedding():
         logging.info(f"Top 8 similar items: {top_item_ids}")
 
         # 환경변수에서 스프링 부트 API URL을 읽어옴
-        spring_boot_url = os.getenv('SPRING_BOOT_API_URL') + "/v1/no-auth/auction/Recommendation/Embedding/makeDto"
+        spring_boot_url = os.getenv('SPRING_BOOT_API_URL') + "/v1/no-auth/auction/Recommendation/makeDto"
         if not spring_boot_url:
             return jsonify({'status': 'fail', 'message': 'Spring Boot API URL not set in environment variables'}), 500
 
