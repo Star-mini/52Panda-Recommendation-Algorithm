@@ -5,7 +5,7 @@ from scipy.spatial.distance import cosine
 import json
 import os
 import requests
-from app.item.amazon.algorithm import amazon_recommendations  # 수정된 경로로 import
+from app.item.image.algorithm import image_recommendations  # 수정된 경로로 import
 from app.item.Embedding.algorithm import get_embeddings_by_category
 from app.common.models import Item
 
@@ -34,10 +34,10 @@ def merge_and_send_recommendations(item_id):
         top_embeddings = similarities[1:5]  # 상위 4개 선택
 
         # 아마존 알고리즘 호출
-        amazon_recommendations_result = amazon_recommendations(item_id)
+        image_recommendations_result = image_recommendations(item_id)
 
         # 병합 로직
-        combined_recommendations = top_embeddings + amazon_recommendations_result
+        combined_recommendations = top_embeddings + image_recommendations_result
         combined_recommendations.sort(key=lambda x: x.get('similarity', x.get('score')), reverse=True)
         top_recommendations = combined_recommendations[:8]
         top_item_ids = [rec['item_id'] for rec in top_recommendations]

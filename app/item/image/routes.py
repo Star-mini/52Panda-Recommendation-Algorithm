@@ -1,13 +1,13 @@
-# app/item/amazon/routes.py
+# app/item/image/routes.py
 
 from flask import Blueprint, request, jsonify
 import logging
 from .algorithm import process_item  # 상대 경로로 import
-from .algorithm import amazon_recommendations
+from .algorithm import image_recommendations
 
-amazon_bp = Blueprint('amazon', __name__)
+image_bp = Blueprint('image', __name__)
 
-@amazon_bp.route('/process', methods=['POST'])
+@image_bp.route('/process', methods=['POST'])
 def process():
     data = request.get_json()
     item_id = data.get('id')
