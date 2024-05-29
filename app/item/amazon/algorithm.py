@@ -10,10 +10,10 @@ def amazon_recommendations(item_id):
     try:
         # 예시로 고정된 추천 항목을 반환합니다.
         recommendations = [
-            {'item_id': '1', 'score': 1.0},
-            {'item_id': '1', 'score': 1.0},
-            {'item_id': '1', 'score': 1.0},
-            {'item_id': '1', 'score': 1.0}
+            {'item_id': 1, 'score': 1.0},
+            {'item_id': 1, 'score': 1.0},
+            {'item_id': 1, 'score': 1.0},
+            {'item_id': 1, 'score': 1.0}
         ]
         return recommendations
     except Exception as e:
