@@ -1,9 +1,9 @@
 from flask import Blueprint, request, jsonify
 from .algorithm import process_item
 
-item_bp = Blueprint('item', __name__)
+item_bp = Blueprint('amazon', __name__)
 
-@item_bp.route('/api/item', methods=['POST'])
+@item_bp.route('/api/amazon', methods=['POST'])
 def item():
     try:
         data = request.get_json()
