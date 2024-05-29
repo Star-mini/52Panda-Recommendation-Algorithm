@@ -1,19 +1,18 @@
 import os
 from flask import Blueprint, request, jsonify
-from app.park.Embedding.algorithm import process_embedding, get_embeddings_by_category
+from app.item.Embedding.algorithm import process_embedding, get_embeddings_by_category  # 경로 수정
 import logging
-from app.common.models import Item  # 올바른 경로로 Item을 임포트
+from app.common.models import Item
 import json
 from scipy.spatial.distance import cosine
 import requests
 from dotenv import load_dotenv
 
-# .env 파일 로드
 load_dotenv()
 
 embedding_bp = Blueprint('embedding', __name__)
 
-@embedding_bp.route('/embedding', methods=['POST'])
+@embedding_bp.route('/Recommend', methods=['POST'])  # 경로 수정
 def embedding():
     try:
         logging.info("Embedding route called")  # 디버그 메시지 추가
