@@ -1,9 +1,9 @@
 from flask import Flask
 from app.common.config import Config
 from app.common.extensions import db
-from app.item.Embedding.routes import embedding_bp  # 경로 수정
-from app.item.amazon.routes import amazon_bp  # 경로 수정
-from app.item.Cookie.routes import cookie_bp  # 경로 수정
+from app.item.Embedding.routes import embedding_bp  # 기존 경로
+from app.item.amazon.routes import amazon_bp  # 변경된 경로
+from app.item.Cookie.routes import cookie_bp  # 기존 경로
 import logging
 
 def create_app():
@@ -18,7 +18,7 @@ def create_app():
     
     # Blueprint 등록
     app.register_blueprint(embedding_bp, url_prefix='/api')
-    app.register_blueprint(amazon_bp, url_prefix='/api')
+    app.register_blueprint(amazon_bp, url_prefix='/api')  # 경로 변경
     app.register_blueprint(cookie_bp, url_prefix='/api')
     
     return app

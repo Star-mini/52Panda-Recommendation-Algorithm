@@ -1,10 +1,10 @@
 from flask import Blueprint, request, jsonify
 from .algorithm import process_item
 
-item_bp = Blueprint('amazon', __name__)
+amazon_bp = Blueprint('amazon', __name__)  # 'amazon'으로 변경
 
-@item_bp.route('/api/amazon', methods=['POST'])
-def item():
+@amazon_bp.route('/api/amazon', methods=['POST'])  # 라우트 이름 변경
+def amazon():  # 함수 이름도 item에서 amazon으로 변경
     try:
         data = request.get_json()
         item_id = data.get('id')
