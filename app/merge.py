@@ -7,6 +7,7 @@ import os
 import requests
 from app.item.image.algorithm import image_recommendations  # 수정된 경로로 import
 from app.item.Embedding.algorithm import get_embeddings_by_category
+from app.item.LLM.algorithm import llm_recommendations  # LLM 추천 함수 import
 from app.common.models import Item
 
 def merge_and_send_recommendations(item_id):
@@ -33,16 +34,19 @@ def merge_and_send_recommendations(item_id):
         similarities.sort(key=lambda x: x['similarity'], reverse=True)
         top_embeddings = similarities[1:5]  # 상위 4개 선택
 
-        # 아마존 알고리즘 호출
+        # 이미지 추천 결과 가져오기
         image_recommendations_result = image_recommendations(item_id)
 
+        # LLM 추천 결과 가져오기
+        llm_recommendations_result = llm_recommendations(item_id)
+
         # 병합 로직
-        combined_recommendations = top_embeddings + image_recommendations_result
+        combined_recommendations = top_embeddings + image_recommendations_result + llm_recommendations_result
         combined_recommendations.sort(key=lambda x: x.get('similarity', x.get('score')), reverse=True)
-        top_recommendations = combined_recommendations[:8]
+        top_recommendations = combined_recommendations[:12]  # 상위 12개 선택
         top_item_ids = [rec['item_id'] for rec in top_recommendations]
 
-        logging.info(f"Top 8 combined recommendations: {top_item_ids}")
+        logging.info(f"Top 12 combined recommendations: {top_item_ids}")
 
         # DTO로 변환 후 Spring Boot API 호출
         spring_boot_url = os.getenv('SPRING_BOOT_API_URL') + "/v1/no-auth/auction/Recommendation/makeDto"
