@@ -51,7 +51,7 @@ def get_embedding_recommendations(item_id):
             similarities.append({'item_id': embedding['id'], 'similarity': similarity})
 
         similarities.sort(key=lambda x: x['similarity'], reverse=True)  # 유사도에 따라 정렬
-        return similarities[:12]  # 상위 12개의 유사한 아이템 반환
+        return similarities[1:12]  # 상위 12개의 유사한 아이템 반환
     except Exception as e:
         logging.error(f"Error in get_embedding_recommendations: {e}")  # 오류 로깅
         return []
