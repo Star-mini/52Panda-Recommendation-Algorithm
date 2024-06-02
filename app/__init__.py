@@ -4,6 +4,7 @@ from app.common.extensions import db
 from app.common.models import Item, Recommend
 from app.item.Embedding.routes import embedding_bp
 from app.item.Cookie.routes import cookie_bp
+from app.common.MakeRepresentEmbedding import make_represent_bp # 추가된 라우트 임포트
 import logging
 
 def create_app():
@@ -18,4 +19,6 @@ def create_app():
     logging.basicConfig(level=app.config.get("LOGGING_LEVEL", "DEBUG"))
     app.register_blueprint(embedding_bp, url_prefix='/api')
     app.register_blueprint(cookie_bp, url_prefix='/api')
+    app.register_blueprint(make_represent_bp, url_prefix='/api') # 블루프린트 등록
+
     return app
