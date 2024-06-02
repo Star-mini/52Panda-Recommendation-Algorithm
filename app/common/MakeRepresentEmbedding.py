@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify
 from app.common.extensions import db
 from app.common.models import Recommend
 import json
+import numpy as np  # numpy를 사용하여 평균 계산
 
 # Blueprint 객체 생성
 make_represent_bp = Blueprint('make_represent', __name__)
@@ -18,17 +19,18 @@ def make_represent_embedding():
             for embed_str in [recommend.embedding, recommend.th_embedding, recommend.category_embedding, recommend.detail_embedding]:
                 if embed_str:
                     embed_list = json.loads(embed_str)
-                    embeddings.extend(embed_list)
+                    embeddings.append(embed_list)
             
-            # 유효한 임베딩 값의 평균을 계산
-            if embeddings:
-                represent_embedding = sum(embeddings) / len(embeddings)
-                # 계산된 평균 값을 represent_embedding 컬럼에 저장
-                recommend.represent_embedding = json.dumps([represent_embedding])
-                db.session.commit()
-                return jsonify({"message": "Represent embedding updated successfully"}), 200
-            else:
-                return jsonify({"message": "No valid embeddings found"}), 400
+            # 배열을 전치하여 동일 인덱스 위치에 있는 값을 그룹화
+            transposed_embeddings = np.array(embeddings).T
+            
+            # 각 그룹에 대해 평균 계산
+            represent_embedding = np.mean(transposed_embeddings, axis=1).tolist()
+            
+            # 계산된 평균 값을 represent_embedding 컬럼에 저장
+            recommend.represent_embedding = json.dumps(represent_embedding)
+            db.session.commit()
+            return jsonify({"message": "Represent embedding updated successfully"}), 200
         else:
             return jsonify({"message": "No recommendations found"}), 404
     except Exception as e:
