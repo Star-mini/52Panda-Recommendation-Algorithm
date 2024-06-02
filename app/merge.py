@@ -1,6 +1,9 @@
 import logging
 import json
+import os
+import requests
 from app.item.Embedding.algorithm import get_embedding_recommendations  # 임베딩 추천 함수 임포트
+from app.common.models import Item
 
 # 쿠키 기반 추천 함수 (예시)
 def get_cookie_recommendations(item_id):
@@ -24,7 +27,21 @@ def merge_and_send_recommendations(item_id, user_id=None):
         top_recommendations = combined_recommendations[:12]
 
         logging.info(f"Top 12 combined recommendations: {[rec['item_id'] for rec in top_recommendations]}")
-        return top_recommendations
+        top_item_ids = [rec['item_id'] for rec in top_recommendations]
+
+        # DTO로 변환 후 Spring Boot API 호출
+        spring_boot_url = os.getenv('SPRING_BOOT_API_URL') + "/v1/no-auth/auction/Recommendation/makeDto"
+        if not spring_boot_url:
+            raise ValueError('Spring Boot API URL not set in environment variables')
+
+        headers = {'Content-Type': 'application/json'}
+        response = requests.post(spring_boot_url, json=top_item_ids, headers=headers)
+
+        if response.status_code == 200:
+            return response.json()
+        else:
+            raise ValueError('Failed to call Spring Boot endpoint')
+
     except Exception as e:
         logging.error(f"Error in merge_and_send_recommendations: {e}")
         return None
