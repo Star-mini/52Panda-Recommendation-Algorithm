@@ -1,8 +1,6 @@
-# app/item/Embedding/routes.py
-
-from app.merge import merge_and_send_recommendations
 from flask import Blueprint, request, jsonify
 import logging
+from app.merge import merge_and_send_recommendations  # 경로 수정
 
 embedding_bp = Blueprint('embedding', __name__)
 
@@ -15,10 +13,11 @@ def embedding():
         logging.info(f"Received data: {data}")
 
         item_id = data.get('id')
+        user_id = data.get('user_id')  # 유저 ID를 요청 데이터에서 가져옴
         if not item_id:
             return jsonify({'status': 'fail', 'message': 'No item ID provided'}), 400
 
-        result = merge_and_send_recommendations(item_id)
+        result = merge_and_send_recommendations(item_id, user_id)
 
         if result:
             return jsonify({'status': 'success', 'data': result})
