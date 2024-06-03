@@ -7,7 +7,6 @@ class Item(db.Model):
     updated_at = db.Column(db.DateTime)
     is_auction_complete = db.Column(db.Boolean)
     category_id = db.Column(db.BigInteger)
-    recommend_id = db.Column(db.BigInteger)
     region_id = db.Column(db.BigInteger)
     seller_id = db.Column(db.BigInteger)
     trading_method_id = db.Column(db.BigInteger)
@@ -22,3 +21,5 @@ class Recommend(db.Model):
     category_embedding = db.Column(db.Text)
     detail_embedding = db.Column(db.Text)
     represent_embedding = db.Column(db.Text)
+    item_id = db.Column(db.BigInteger, db.ForeignKey('item.item_id'))
+    item = db.relationship('Item', backref=db.backref('recommendations', lazy=True))
