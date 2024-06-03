@@ -15,7 +15,21 @@ def get_user_recommendations(user_id):
     recommendations = []  # 유저 기반 추천 결과를 여기에 추가
     return recommendations
 
-# 모든 추천 결과를 병합하는 함수
+import logging
+import json
+import os
+import requests
+from app.item.Embedding.algorithm import get_embedding_recommendations
+from app.common.models import Item
+
+def get_cookie_recommendations(item_id):
+    recommendations = []
+    return recommendations
+
+def get_user_recommendations(user_id):
+    recommendations = []
+    return recommendations
+
 def merge_and_send_recommendations(item_id, user_id=None):
     try:
         embedding_recommendations = get_embedding_recommendations(item_id)
@@ -29,7 +43,6 @@ def merge_and_send_recommendations(item_id, user_id=None):
         logging.info(f"Top 12 combined recommendations: {[rec['item_id'] for rec in top_recommendations]}")
         top_item_ids = [rec['item_id'] for rec in top_recommendations]
 
-        # DTO로 변환 후 Spring Boot API 호출
         spring_boot_url = os.getenv('SPRING_BOOT_API_URL') + "/v1/no-auth/auction/Recommendation/makeDto"
         if not spring_boot_url:
             raise ValueError('Spring Boot API URL not set in environment variables')
@@ -45,3 +58,4 @@ def merge_and_send_recommendations(item_id, user_id=None):
     except Exception as e:
         logging.error(f"Error in merge_and_send_recommendations: {e}")
         return None
+
