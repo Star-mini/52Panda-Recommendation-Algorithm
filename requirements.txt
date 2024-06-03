@@ -13,3 +13,4 @@ Werkzeug==3.0.3
 pymysql
 scipy
 requests
+python-dotenv
