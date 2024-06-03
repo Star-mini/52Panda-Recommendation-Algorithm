@@ -1,24 +1,24 @@
 from flask import Flask
 from app.common.config import Config
 from app.common.extensions import db
-from app.item.Embedding.routes import embedding_bp  # 기존 경로
-from app.item.image.routes import image_bp  # 변경된 경로
-from app.item.Cookie.routes import cookie_bp  # 기존 경로
+from app.common.models import Item, Recommend
+from app.item.Embedding.routes import embedding_bp
+from app.item.Cookie.routes import cookie_bp
+from app.common.MakeRepresentEmbedding import make_represent_bp # 추가된 라우트 임포트
 import logging
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
-    
-    # 데이터베이스 초기화
     db.init_app(app)
-    
-    # 로깅 설정
+
+    # 데이터베이스 테이블 생성
+    with app.app_context():
+        db.create_all()
+
     logging.basicConfig(level=app.config.get("LOGGING_LEVEL", "DEBUG"))
-    
-    # Blueprint 등록
     app.register_blueprint(embedding_bp, url_prefix='/api')
-    app.register_blueprint(image_bp, url_prefix='/api')  # 경로 변경
     app.register_blueprint(cookie_bp, url_prefix='/api')
-    
+    app.register_blueprint(make_represent_bp, url_prefix='/api') # 블루프린트 등록
+
     return app
