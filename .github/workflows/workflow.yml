@@ -38,7 +38,7 @@ jobs:
       run: |
         git clone https://feeding1119:${{ secrets.LOGIN_GITHUB_TOKEN }}@github.com/KCS-final/recommend-argocd.git
         cd recommend-argocd
-        sed -i 's|image: feed1119/panda-recommend:.*|image: feed1119/panda-recommend${{ github.sha }}|' recommend.yaml
+        sed -i 's|image: feed1119/panda-recommend:.*|image: feed1119/panda-recommend:${{ github.sha }}|' recommend.yaml
         git config --global user.name feeding1119
         git config --global user.email akkaa1119@naver.com
         git add recommend.yaml
