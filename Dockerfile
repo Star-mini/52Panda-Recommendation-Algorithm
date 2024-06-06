@@ -21,4 +21,4 @@ ENV FLASK_APP=run.py
 EXPOSE 5000
 
 # 애플리케이션 실행
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0"] 
