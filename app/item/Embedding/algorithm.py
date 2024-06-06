@@ -10,13 +10,13 @@ def get_embeddings_by_category(category_id):
         embeddings = []
         for item in items:
             for recommend in item.recommendations:
-                if recommend.embedding:
-                    embedding = recommend.embedding
-                    if isinstance(embedding, str):
-                        embedding = json.loads(embedding)
+                if recommend.represent_embedding:
+                    represent_embedding = recommend.represent_embedding
+                    if isinstance(represent_embedding, str):
+                        represent_embedding = json.loads(represent_embedding)
                     embeddings.append({
                         'id': item.item_id,
-                        'embedding': embedding
+                        'embedding': represent_embedding
                     })
         return embeddings
     except Exception as e:
@@ -31,10 +31,10 @@ def get_embedding_recommendations(item_id):
             raise ValueError(f"Item with ID {item_id} not found")
 
         recommend = item.recommendations[0]  # 첫 번째 추천 임베딩 사용
-        if recommend is None or not recommend.embedding:
-            raise ValueError(f"No embedding found for item ID {item_id}")
+        if recommend is None or not recommend.represent_embedding:
+            raise ValueError(f"No represent_embedding found for item ID {item_id}")
 
-        current_embedding = recommend.embedding
+        current_embedding = recommend.represent_embedding
         if isinstance(current_embedding, str):
             current_embedding = json.loads(current_embedding)
         similarities = []
