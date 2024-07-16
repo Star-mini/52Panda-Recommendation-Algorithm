@@ -5,41 +5,7 @@
 
 
 
-<br/>
-<br/>
-      
-## :family_man_man_boy_boy: 팀원 소개
-![20240716180542](https://github.com/user-attachments/assets/f1719046-449d-4c9b-a1a6-33c7a13239ee)
 
-
-
-
-<br/>
-<br/>
-    
-## :page_with_curl: 프로젝트 개요
-
-![image](https://github.com/user-attachments/assets/2c388dc1-b80e-4402-96fe-f409a0a8b5cf) 
-
-
-<br/>
-<br/>
-
-
-## :newspaper: 프로젝트 산출물
-
-![image](https://github.com/user-attachments/assets/7514c154-5d13-4ddb-a7c6-a94ad23ba93a)
-
-<br/>
-<br/>
-
-## :hammer_and_wrench: 기술 스택
-
-![image](https://github.com/user-attachments/assets/77c1e009-9ef2-410b-9da5-42d40d3339ec)
-
-
-<br/>
-<br/>
 
 ## :gear: 프로젝트 구성
 
