@@ -1,26 +1,21 @@
+<div align="center">
+
+
+# 52Panda 다중로직 추천 알고리즘
 <img width="100%" alt="image" src="https://github.com/user-attachments/assets/42a69bfd-13cb-4406-b7fe-a57207cb9653">
-<img width="100%" alt="image" src="https://github.com/user-attachments/assets/51e41f3a-72c6-4855-81db-41f1823a2516">
-<img width="100%" alt="aboutphoto" src="https://github.com/user-attachments/assets/f490aaaa-29ec-410b-9c39-5fd6edfa4dce">
+
+#### 개인화 추천 서비스 구현<br/>
+웹 3.0 기반, Flask로 개인화 추천 서비스 구축, 사용자 만족,<br/>
+비즈니스 활용성 극대화 했어요!<br/>
+#### <br/>클라우드 API 통합으로 추천 성능 향상<br/>
+클라우드 서비스 성능을 위해 외부 API(제미나이, 오픈AI, 구글 비전)를 <br/>
+사용하여 추천 알고리즘의 정확도와 성능을 높여 사용자 경험을 개선했어요!<br/>
+#### <br/>다중 로직 추천 알고리즘<br/>
+아이템, 유저행동기반, 쿠키기반 등의 다중 추천알고리즘 로직을 수행하고 있어요!<br/><br/>
 
 
 
 
-
-
-## :gear: 프로젝트 구성
-
-### CI/CD
-
-![image](https://github.com/user-attachments/assets/7a1f9a9e-ba3e-4f08-8a2a-fb4a152c630e)
-
-### 아키텍쳐
-![최종아키텍처](https://github.com/user-attachments/assets/fb3b0e32-ea51-4971-842f-d81d37cb21ae)
-![image](https://github.com/user-attachments/assets/cec5d342-67aa-4a0d-89ea-711f90b89ed2)
-
-
-<br/>
-<br/>
-  
 
 
 
