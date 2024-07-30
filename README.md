@@ -4,14 +4,26 @@
 # 52Panda 다중로직 추천 알고리즘
 <img width="100%" alt="image" src="https://github.com/user-attachments/assets/42a69bfd-13cb-4406-b7fe-a57207cb9653">
 
-#### 개인화 추천 서비스 구현<br/>
-웹 3.0 기반, Flask로 개인화 추천 서비스 구축, 사용자 만족,<br/>
-비즈니스 활용성 극대화 했어요!<br/>
-#### <br/>클라우드 API 통합으로 추천 성능 향상<br/>
-클라우드 서비스 성능을 위해 외부 API(제미나이, 오픈AI, 구글 비전)를 <br/>
-사용하여 추천 알고리즘의 정확도와 성능을 높여 사용자 경험을 개선했어요!<br/>
-#### <br/>다중 로직 추천 알고리즘<br/>
-아이템, 유저행동기반, 쿠키기반 등의 다중 추천알고리즘 로직을 수행하고 있어요!<br/><br/>
+## 추천 알고리즘 개요 <br/>
+![image](https://github.com/user-attachments/assets/9e2f749e-1f1f-42d4-8cc5-b136146cff38)
+
+## 다중로직 알고리즘 <br/>
+![image](https://github.com/user-attachments/assets/f59a5b46-12c2-4e7d-bf47-dc03caa06b54)
+
+## 아이템 기반 알고리즘<br/>
+![image](https://github.com/user-attachments/assets/bcd23a04-e941-43af-b75b-a207fcabf07e)
+
+##  유저행동기반 알고리즘 <br/>
+![image](https://github.com/user-attachments/assets/52dac0a9-6ed7-4ff7-9a28-7ff893ab6676)
+
+## 쿠키 내용을 통한 알고리즘 <br/>
+![image](https://github.com/user-attachments/assets/e54a14b1-aebc-490e-85b3-bb52c6719b08)
+
+## 52PANDA의 혁신적인 추천 서비스 시스템 개발 <br/>
+여러가지 임베딩변수를  이용하여, 결과 값에 대한 정교함을 상승 시켰습니다.<br/>
+가중치를 설정 하여, 추천 서비스의 한계를 수정하였고,<br/>
+데이터가 부족할 때, 추천 서비스의 한계를 해결하였습니다<br/>
+### 52PANDA만의 독자적인 추천 서비스 제공 <br/>
 
 
 
